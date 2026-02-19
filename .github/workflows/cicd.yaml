@@ -68,6 +68,9 @@ jobs:
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --region "$AWS_REGION" --name "$EKS_CLUSTER_NAME"
 
+      - name: Debug cluster access
+        run: aws sts get-caller-identity && kubectl config current-context && kubectl version --short && kubectl get nodes
+
       - name: Ensure namespace exists
         run: kubectl get ns "$K8S_NAMESPACE" || kubectl create ns "$K8S_NAMESPACE"
 
