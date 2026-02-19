@@ -20,9 +20,43 @@
             </div>
             <pre id="output" class="output">(waiting for response)</pre>
         </section>
+        <section class="card">
+            <iframe src="https://giphy.com/embed/BhYXfofUJZLSzJeEcv" width="480" height="480" style="" frameBorder="0"
+                class="giphy-embed" allowFullScreen></iframe>
+            <p><a href="https://giphy.com/gifs/wwe-raw-smackdown-BhYXfofUJZLSzJeEcv">via GIPHY</a></p>
+        </section>
     </main>
 
     <script src="/app.js"></script>
+    <script>
+    // Confetti animation (simple JS, no external lib)
+    function launchConfetti() {
+        const colors = ['#be123c', '#f43f5e', '#f87171', '#fff1f2', '#7f1d1d'];
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        document.body.appendChild(confetti);
+        for (let i = 0; i < 80; i++) {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '10px';
+            particle.style.height = '18px';
+            particle.style.background = colors[Math.floor(Math.random()*colors.length)];
+            particle.style.left = Math.random()*100 + 'vw';
+            particle.style.top = '-30px';
+            particle.style.opacity = Math.random()*0.7+0.3;
+            particle.style.transform = `rotate(${Math.random()*360}deg)`;
+            particle.style.borderRadius = '3px';
+            particle.style.transition = 'top 1.5s cubic-bezier(.23,1.01,.32,1), left 1.5s linear';
+            confetti.appendChild(particle);
+            setTimeout(() => {
+                particle.style.top = (80+Math.random()*20) + 'vh';
+                particle.style.left = (parseFloat(particle.style.left)+Math.random()*40-20) + 'vw';
+            }, 10);
+        }
+        setTimeout(() => confetti.remove(), 1800);
+    }
+    document.getElementById('checkBtn').addEventListener('click', launchConfetti);
+    </script>
 </body>
 
 </html>
